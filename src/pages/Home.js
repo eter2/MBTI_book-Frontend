@@ -1,3 +1,5 @@
+import React from 'react';
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -23,7 +25,6 @@ const Title = styled.div`
 const Subtitle = styled.div`
   font-family: 'Noto Sans KR';
   font-size: 40px;
-  line-height: 48px;
   font-weight: 900;
   text-align: center;
   letter-spacing: 0.41px;
@@ -32,8 +33,8 @@ const Subtitle = styled.div`
 `;
 
 const Imgbox = styled.img`
-  max-width: 500px;
-  min-width: 200px;
+  margin-top: 20px;
+  margin-bottom: 100px;
 `
 
 const Description = styled.div`
@@ -45,10 +46,6 @@ const Description = styled.div`
   text-align: center;
   color: #6f6f70;
   margin-top: 20px;
-
-  span {
-    white-space: pre-line;
-  }
 `;
 
 const Button = styled.button`
@@ -57,7 +54,7 @@ const Button = styled.button`
   max-width: 499px;
   min-height: 78px;
   border-radius: 20px;
-  border: black;
+  border: 0;
   background-color: #326a4f;
   color: white;
   font-size: 26px;
@@ -65,14 +62,20 @@ const Button = styled.button`
 `;
 
 function Home() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('question');
+  }
+
   return (
     <Container>
       <Title>내가 좋아하는 책<br/>유형 TEST</Title>
       <Subtitle>나의 책갈피는?</Subtitle>
-      <Description>성격 테스트를 기반으로 나에게 맞는<br/>책을 찾고 어울리는 책갈피를 알아보세요</Description>
+      <Description>성격 Test 기반으로 나에게 맞는<br/>책을 찾고 어울리는 책갈피를 알아보자</Description>
 
       <Imgbox src="./img/bookmark.png" />
-      <Button>START</Button>
+      <Button onClick={handleClick}>START</Button>
     </Container>
   );
 }
