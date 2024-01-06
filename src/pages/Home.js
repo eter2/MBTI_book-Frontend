@@ -69,9 +69,9 @@ function Home() {
 
   return (
     <Container>
-      <Title>내가 좋아하는 책<br/>유형 TEST</Title>
-      <Subtitle>나의 책갈피는?</Subtitle>
-      <Description>성격 Test 기반으로 나에게 맞는<br/>책을 찾고 어울리는 책갈피를 알아보자</Description>
+      <Title>나는 무슨 책갈피일까?</Title>
+      <Subtitle>30초로 끝내는 책 취향 TEST</Subtitle>
+      <Description>책 취향 테스트를 통해<br/>내 유형이 좋아하는 책 TOP10을 알아보자</Description>
 
       <Imgbox src="./img/bookmark.png" />
       <Button onClick={handleClick}>START</Button>
