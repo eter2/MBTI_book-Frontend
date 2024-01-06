@@ -38,11 +38,11 @@ const Imgbox = styled.img`
     margin-left: 50px;
 `
 
-function BookList({book}) {
+function BookList({index, book}) {
     return (
         <ContainerWithColumn>
             <div>
-                <Title>{book.bookId}.{book.bookTitle}</Title>
+                <Title>{index}.{book.bookTitle}</Title>
                 <Description>{book.count}명이 좋아해요</Description>
             </div>
             <Imgbox src={book.bookImageUrl}/>

@@ -66,10 +66,10 @@ function Result() {
         </Subtitle>
         
         {result.books.map((book, index) => (
-            <BookList key={index} book={book} />
+            <BookList key={index} index={index + 1} book={book} />
         ))}
 
-        <Share url={url} imgUrl={result.bookmarkImageUrl} />
+        <Share url={url} />
       </Container>
     );
 }

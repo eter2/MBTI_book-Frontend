@@ -1,35 +1,67 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import ShareKakao from './ShareKakao';
-import { FacebookShareButton, FacebookIcon } from "react-share";
-
-const Title = styled.div`
-    font-family: 'Gasoek One';
-    font-size: 60px;
-    text-align: center;
-    letter-spacing: 2px;
-    color: #326a4f;
-`;
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHouse, faShareNodes } from '@fortawesome/free-solid-svg-icons'
 
 const ContainerWithColumn = styled.div`
     display: flex;
-    max-width: 1200px;
-    width: 100%;
     margin-top: 50px;
     margin-bottom: 80px;
-    justify-content: space-between;
+    justify-content: space-around;
 `;
 
-function Share({url, imgUrl}) {
+const ContainerWithFlex = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 500px;
+    
+    @media screen and (max-width: 768px) {
+        width: 300px;
+    }
+`;
+
+const Description = styled.div`
+    font-family: 'Noto Sans KR';
+    color: #326a4f;
+    font-weight: 700;
+    font-size: 43px;
+    margin-top: 50px;
+    text-align: center;
+`;  
+
+function Share({url}) {
+    const navigate = useNavigate();
+
+    const handleHome = () => {
+        navigate(`/`);
+    }
+
+    const saveClipboard = (url) => {
+        navigator.clipboard.writeText(url)
+            .then(() => {
+                window.alert('공유 링크 복사 성공');
+            })
+            .catch((error) => {
+                console.error('Failed to copy text to clipboard:', error);
+            });
+    }
+
     return (
         <div>
-            <Title>결과 공유하기</Title>
             <ContainerWithColumn>
-                <ShareKakao url={url} imgUrl={imgUrl}/>
-                {/* <div>인스타그램</div> */}
-                <FacebookShareButton url={url}>
-                <FacebookIcon size={68} round={false} borderRadius={15} />
-                </FacebookShareButton>
+                <ContainerWithFlex onClick={handleHome}>
+                    <FontAwesomeIcon icon={faHouse} style={{ fontSize: '82px' }}/>
+                    <Description>다시하기</Description>
+                </ContainerWithFlex>
+                
+                <ContainerWithFlex onClick={() => saveClipboard(url)}>
+                    <FontAwesomeIcon icon={faShareNodes} style={{ fontSize: '82px' }}/>
+                    <Description>내 책갈피 공유하기</Description>
+                </ContainerWithFlex>
             </ContainerWithColumn>
         </div>
     );
